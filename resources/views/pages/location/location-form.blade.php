@@ -6,8 +6,8 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Location Form</h4>
-                            <form class="forms-sample" method="POST" onclick="destroy()"
-                                  action="{{ action('Dashboard\LocationController:@store', ['location' => $location->id]) }}">
+                            <form class="forms-sample" method="POST"
+                                  action="{{ route('location.store') }}">
                                 @csrf
                                 <div class="form-group row">
                                     <label for="countryInput" class="col-sm-3 col-form-label">Country</label>
