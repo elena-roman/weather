@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Country;
+use App\Forecast;
 use App\Location;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\View;
 
 class LocationController extends Controller
@@ -40,6 +42,8 @@ class LocationController extends Controller
         $location->fill($request->all(['country_alpha2code', 'city']));
         $location->save();
 
+        Artisan::call('import:weather');
+
         return redirect()->action('HomeController@index');
     }
 
@@ -51,6 +55,7 @@ class LocationController extends Controller
     public function destroy($id, Request $request)
     {
         Location::find($id)->delete();
+        Forecast::where('location_id', '=', $id)->delete();
 
         return redirect()->action('HomeController@index');
     }
