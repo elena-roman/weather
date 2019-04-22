@@ -1,11 +1,11 @@
 @section('content')
 
+    <div class="row">
     @foreach($forecasts as $forecast)
-        <div class="row">
-            <div class="col-lg-12 grid-margin stretch-card">
-                @component('component.card-weather',  ['forecast' => $forecast])@endcomponent
-            </div>
+        <div class="col-lg-6 grid-margin stretch-card">
+            @component('component.card-weather',  ['forecast' => $forecast])@endcomponent
         </div>
     @endforeach
+    </div>
 
 @endsection
