@@ -42,7 +42,7 @@ class LocationController extends Controller
         $location->fill($request->all(['country_alpha2code', 'city']));
         $location->save();
 
-        Artisan::call('import:weather');
+        Artisan::call('import:forecast');
 
         return redirect()->action('HomeController@index');
     }
